@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projects/screens/home.dart';
+import 'package:jokes_app/screens/home.dart';
+
+import 'screens/home.dart';
 
 void main() {
   runApp(const MyApp());

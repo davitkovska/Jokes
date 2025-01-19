@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projects/models/jokes model.dart';
-import 'package:projects/services/api_service.dart';
-import 'package:projects/widgets/joke_card.dart';
+import 'package:jokes_app/models/jokes_models.dart';
+import 'package:jokes_app/services/api_service.dart';
 
 class RandomJoke extends StatefulWidget {
   const RandomJoke({Key? key}) : super(key: key);
@@ -40,9 +39,11 @@ class _RandomJokeState extends State<RandomJoke> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Random Joke"),
-        backgroundColor: Colors.lightBlue[200],
-        elevation: 5,),
+      appBar: AppBar(
+        title: const Text("Random Joke"),
+        backgroundColor: Colors.pink[200],
+        elevation: 5,
+      ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : error != null
@@ -51,11 +52,40 @@ class _RandomJokeState extends State<RandomJoke> {
           ? const Center(child: Text("No joke available"))
           : Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Container(
-          constraints: BoxConstraints(maxHeight: 200),
-          child: JokeCard(
-            setup: joke!.setup,
-            punchline: joke!.punchline,
+        child: Center(
+          child: Card(
+            elevation: 5,
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            color: Colors.pink[50],
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    joke!.setup,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    joke!.punchline,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.blueGrey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
